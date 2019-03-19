@@ -11,6 +11,6 @@ public class HelloWorldEP {
 
     @RequestMapping(method = RequestMethod.GET, path = "/hello")
     String hello(){
-        return "Hello heroku World!";
+        return "Hello heroku world!";
     }
 }

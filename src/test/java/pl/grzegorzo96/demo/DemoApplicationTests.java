@@ -29,7 +29,7 @@ public class DemoApplicationTests {
 		ResponseEntity<String> response = httpClient.getForEntity(url, String.class); // 2 argument to co ma zwracac klasa
 		// then - sprawdzanie
 		Assertions.assertThat(response.getStatusCodeValue()).isEqualTo(200);
-		Assertions.assertThat(response.getBody()).isEqualTo("Hello heroku World!");
+		Assertions.assertThat(response.getBody()).isEqualTo("Hello heroku world!");
 		// odpowiedz bedzie zawierala napis "Hello World" i kod 200 (HTTP)
 	}
 
