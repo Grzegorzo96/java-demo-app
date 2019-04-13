@@ -22,7 +22,7 @@ class ProductEndpoint {
         return productFacade.create(productRequestDto);
     }
 
-    @GetMapping("/products-id-{id}") //method = RequestMethod.GET produces = MediaType.*/
+    @GetMapping("/{id}") //method = RequestMethod.GET produces = MediaType.*/
     ProductResponseDto getProduct(@PathVariable("id") String id){
         return productFacade.findById(id);
     }
