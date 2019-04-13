@@ -9,12 +9,14 @@ public final class Product {
     private final String name;
     private final LocalDateTime createdAt;
     private final PriceDto price;
+    private final ImageDto image;
 
-    public Product(String id, String name, LocalDateTime createdAt, PriceDto price) {
+    public Product(String id, String name, LocalDateTime createdAt, PriceDto price, ImageDto image) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
         this.price = price;
+        this.image = image;
     }
 
 
@@ -36,6 +38,10 @@ public final class Product {
         return price;
     }
 
+    public ImageDto getImage() {
+        return image;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -53,12 +59,12 @@ public final class Product {
         return Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(createdAt, product.createdAt) &&
-                Objects.equals(price, product.price);
+                Objects.equals(price, product.price)&&
+                Objects.equals(image, product.image);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createdAt, price);
+        return Objects.hash(id, name, createdAt, price, image);
     }
-
 }
