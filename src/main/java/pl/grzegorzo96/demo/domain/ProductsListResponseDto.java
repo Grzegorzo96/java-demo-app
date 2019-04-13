@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class ProductsListResponseDto {
-    private final List<ProductResponseDto> products; // nie moze byc Product, bo wycieka domena!
+    private final List<ProductResponseDto> products; // typ nie moze byc Product, bo wycieka domena!
 
     @JsonCreator
     public ProductsListResponseDto(@JsonProperty("products") List<ProductResponseDto> productsList) {

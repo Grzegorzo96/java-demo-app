@@ -8,11 +8,13 @@ public final class Product {
     private final String id;
     private final String name;
     private final LocalDateTime createdAt;
+    private final PriceDto price;
 
-    public Product(String id, String name, LocalDateTime createdAt) {
+    public Product(String id, String name, LocalDateTime createdAt, PriceDto price) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
+        this.price = price;
     }
 
 
@@ -28,6 +30,10 @@ public final class Product {
     public LocalDateTime getCreatedAt() {
 
         return createdAt;
+    }
+
+    public PriceDto getPrice() {
+        return price;
     }
 
     @Override
@@ -46,12 +52,13 @@ public final class Product {
         Product product = (Product) o;
         return Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
-                Objects.equals(createdAt, product.createdAt);
+                Objects.equals(createdAt, product.createdAt) &&
+                Objects.equals(price, product.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createdAt);
+        return Objects.hash(id, name, createdAt, price);
     }
 
 }
