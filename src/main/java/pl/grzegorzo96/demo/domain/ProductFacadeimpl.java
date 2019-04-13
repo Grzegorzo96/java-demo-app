@@ -26,14 +26,15 @@ public class ProductFacadeimpl implements ProductFacade {
 
         String id = UUID.randomUUID().toString(); // tworzenie pseudoid znakow
         LocalDateTime createdAt = LocalDateTime.now();
-        Product product = new Product(id, productRequest.getName(), createdAt, productRequest.getPrice());
+        Product product = new Product(id, productRequest.getName(), createdAt, productRequest.getPrice(), productRequest.getImage());
 
         productRepository.save(product);
 
         return new ProductResponseDto(
                 product.getId(),
                 product.getName(),
-                product.getPrice()
+                product.getPrice(),
+                product.getImage()
         );
 
         // stworzyc produkt - OK
@@ -47,7 +48,7 @@ public class ProductFacadeimpl implements ProductFacade {
         if(product.equals(null)){
             throw new RuntimeException("Product not exist!");
         }
-        return new ProductResponseDto(product.getId(), product.getName(), product.getPrice());
+        return new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ProductFacadeimpl implements ProductFacade {
         List<Product> products = productRepository.getAll();
 
         return new ProductsListResponseDto(products.stream().map(product ->
-                new ProductResponseDto(product.getId(), product.getName(), product.getPrice())).collect(Collectors.toList()));
+                new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage())).collect(Collectors.toList()));
     }
 
     @Override
@@ -65,9 +66,9 @@ public class ProductFacadeimpl implements ProductFacade {
         }
 
         Product product = productRepository.findById(id);
-        Product updatedProduct = productRepository.update(product, productRequest.getName(), productRequest.getPrice());
+        Product updatedProduct = productRepository.update(product, productRequest.getName(), productRequest.getPrice(), productRequest.getImage());
 
-        return new ProductResponseDto(updatedProduct.getId(), updatedProduct.getName(), updatedProduct.getPrice());
+        return new ProductResponseDto(updatedProduct.getId(), updatedProduct.getName(), updatedProduct.getPrice(), updatedProduct.getImage());
     }
 
     @Override
