@@ -1,5 +1,6 @@
 package pl.grzegorzo96.demo.infrastructure;
 
+import pl.grzegorzo96.demo.domain.PriceDto;
 import pl.grzegorzo96.demo.domain.Product;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ProductRepository {
     Product findById(String id);
     List<Product> getAll();
 
-    Product update(Product product, String name);
+    Product update(Product product, String name, PriceDto price);
 
     void delete(String id);
 }

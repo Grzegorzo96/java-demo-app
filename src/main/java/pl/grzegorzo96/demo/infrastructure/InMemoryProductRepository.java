@@ -1,6 +1,7 @@
 package pl.grzegorzo96.demo.infrastructure;
 
 import org.springframework.stereotype.Repository;
+import pl.grzegorzo96.demo.domain.PriceDto;
 import pl.grzegorzo96.demo.domain.Product;
 import pl.grzegorzo96.demo.domain.ProductNotFoundException;
 
@@ -32,11 +33,11 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product update(Product product, String name) {
+    public Product update(Product product, String name, PriceDto price) {
         if(!products.containsKey(product.getId())){
             throw new ProductNotFoundException("Nie ma takiego produktu!");
         }
-        products.put(product.getId(), new Product(product.getId(), name, product.getCreatedAt()));
+        products.put(product.getId(), new Product(product.getId(), name, product.getCreatedAt(), price));
         return products.get(product.getId());
     }
 
