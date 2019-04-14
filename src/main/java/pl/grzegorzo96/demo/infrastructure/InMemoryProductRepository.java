@@ -1,14 +1,13 @@
 package pl.grzegorzo96.demo.infrastructure;
 
 import org.springframework.stereotype.Repository;
-import pl.grzegorzo96.demo.domain.ImageDto;
-import pl.grzegorzo96.demo.domain.PriceDto;
-import pl.grzegorzo96.demo.domain.Product;
-import pl.grzegorzo96.demo.domain.ProductNotFoundException;
+import pl.grzegorzo96.demo.domain.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -34,11 +33,11 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Product update(Product product, String name, PriceDto price, ImageDto image) {
+    public Product update(Product product, String name, PriceDto price, ImageDto image, DescriptionDto description, List<TagsDto> tags) {
         if(!products.containsKey(product.getId())){
             throw new ProductNotFoundException("Nie ma takiego produktu!");
         }
-        products.put(product.getId(), new Product(product.getId(), name, product.getCreatedAt(), price, image ));
+        products.put(product.getId(), new Product(product.getId(), name, product.getCreatedAt(), price, image, description, tags));
         return products.get(product.getId());
     }
 

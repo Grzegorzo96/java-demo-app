@@ -1,6 +1,7 @@
 package pl.grzegorzo96.demo.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public final class Product {
@@ -10,13 +11,17 @@ public final class Product {
     private final LocalDateTime createdAt;
     private final PriceDto price;
     private final ImageDto image;
+    private final DescriptionDto description;
+    private final List<TagsDto> tags;
 
-    public Product(String id, String name, LocalDateTime createdAt, PriceDto price, ImageDto image) {
+    public Product(String id, String name, LocalDateTime createdAt, PriceDto price, ImageDto image, DescriptionDto description, List<TagsDto> tags) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
         this.price = price;
         this.image = image;
+        this.description = description;
+        this.tags = tags;
     }
 
 
@@ -42,6 +47,14 @@ public final class Product {
         return image;
     }
 
+    public DescriptionDto getDescription() {
+        return description;
+    }
+
+    public List<TagsDto> getTags(){
+        return tags;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -60,11 +73,13 @@ public final class Product {
                 Objects.equals(name, product.name) &&
                 Objects.equals(createdAt, product.createdAt) &&
                 Objects.equals(price, product.price)&&
-                Objects.equals(image, product.image);
+                Objects.equals(image, product.image)&&
+                Objects.equals(description, product.description)&&
+                Objects.equals(tags, product.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, createdAt, price, image);
+        return Objects.hash(id, name, createdAt, price, image, description, tags);
     }
 }

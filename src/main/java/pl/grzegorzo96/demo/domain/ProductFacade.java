@@ -18,6 +18,7 @@ public interface ProductFacade {
 
     // get
     ProductResponseDto findById(String id);
+
     ProductsListResponseDto getAll();
 
 }
