@@ -2,7 +2,8 @@ package pl.grzegorzo96.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
 
 public class ProductResponseDto {
 
@@ -10,16 +11,22 @@ public class ProductResponseDto {
     private final String name;
     private final PriceDto price;
     private final ImageDto image;
+    private final DescriptionDto description;
+    private final List<TagsDto> tags;
 
     @JsonCreator
     public ProductResponseDto(@JsonProperty("id")String id,
                               @JsonProperty("name") String name,
                               @JsonProperty("price") PriceDto price,
-                              @JsonProperty("image") ImageDto image) {
+                              @JsonProperty("image") ImageDto image,
+                              @JsonProperty("description") DescriptionDto description,
+                              @JsonProperty("tags") List<TagsDto> tags) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
+        this.description = description;
+        this.tags = tags;
     }
 
     public String getId() {
@@ -38,13 +45,23 @@ public class ProductResponseDto {
         return image;
     }
 
+    public DescriptionDto getDescription() {
+        return description;
+    }
+
+    public List<TagsDto> getTags(){
+        return tags;
+    }
+
     @Override
     public String toString() {
         return "ProductResponseDto{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
+                ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
+                ", tags='" + tags + '\'' +
                 '}';
     }
 }

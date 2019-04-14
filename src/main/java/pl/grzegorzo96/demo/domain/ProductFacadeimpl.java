@@ -8,6 +8,7 @@ import pl.grzegorzo96.demo.infrastructure.ProductRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 @Component
@@ -26,7 +27,7 @@ public class ProductFacadeimpl implements ProductFacade {
 
         String id = UUID.randomUUID().toString(); // tworzenie pseudoid znakow
         LocalDateTime createdAt = LocalDateTime.now();
-        Product product = new Product(id, productRequest.getName(), createdAt, productRequest.getPrice(), productRequest.getImage());
+        Product product = new Product(id, productRequest.getName(), createdAt, productRequest.getPrice(), productRequest.getImage(), productRequest.getDescription(), productRequest.getTags());
 
         productRepository.save(product);
 
@@ -34,7 +35,9 @@ public class ProductFacadeimpl implements ProductFacade {
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getImage()
+                product.getImage(),
+                product.getDescription(),
+                product.getTags()
         );
 
         // stworzyc produkt - OK
@@ -48,7 +51,7 @@ public class ProductFacadeimpl implements ProductFacade {
         if(product.equals(null)){
             throw new RuntimeException("Product not exist!");
         }
-        return new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage());
+        return new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getTags());
     }
 
     @Override
@@ -56,7 +59,7 @@ public class ProductFacadeimpl implements ProductFacade {
         List<Product> products = productRepository.getAll();
 
         return new ProductsListResponseDto(products.stream().map(product ->
-                new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage())).collect(Collectors.toList()));
+                new ProductResponseDto(product.getId(), product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getTags())).collect(Collectors.toList()));
     }
 
     @Override
@@ -66,9 +69,9 @@ public class ProductFacadeimpl implements ProductFacade {
         }
 
         Product product = productRepository.findById(id);
-        Product updatedProduct = productRepository.update(product, productRequest.getName(), productRequest.getPrice(), productRequest.getImage());
+        Product updatedProduct = productRepository.update(product, productRequest.getName(), productRequest.getPrice(), productRequest.getImage(), productRequest.getDescription(), productRequest.getTags());
 
-        return new ProductResponseDto(updatedProduct.getId(), updatedProduct.getName(), updatedProduct.getPrice(), updatedProduct.getImage());
+        return new ProductResponseDto(updatedProduct.getId(), updatedProduct.getName(), updatedProduct.getPrice(), updatedProduct.getImage(), updatedProduct.getDescription(), updatedProduct.getTags());
     }
 
     @Override
