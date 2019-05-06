@@ -20,5 +20,5 @@ public interface ProductFacade {
     ProductResponseDto findById(String id);
 
     ProductsListResponseDto getAll();
-
+    ProductsListResponseDto getAllByTag(String tag);
 }
