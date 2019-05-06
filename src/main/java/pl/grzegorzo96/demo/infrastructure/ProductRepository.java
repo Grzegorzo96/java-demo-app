@@ -10,6 +10,7 @@ public interface ProductRepository {
     Product findById(String id);
 
     List<Product> getAll();
+    List<Product> getAllByTags(String tag);
 
     Product update(Product product, String name, PriceDto price, ImageDto image, DescriptionDto description, List<TagsDto> tags);
 

@@ -33,6 +33,15 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
+    public List<Product> getAllByTags(String tag) {
+        return products.values()
+                .stream()
+                .filter(p -> p.getTags() != null)
+                .filter(p -> p.getTags().contains(new TagsDto(tag)))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Product update(Product product, String name, PriceDto price, ImageDto image, DescriptionDto description, List<TagsDto> tags) {
         if(!products.containsKey(product.getId())){
             throw new ProductNotFoundException("Nie ma takiego produktu!");
