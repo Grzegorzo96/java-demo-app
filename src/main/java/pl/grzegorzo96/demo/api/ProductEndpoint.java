@@ -26,7 +26,7 @@ class ProductEndpoint {
         return productFacade.findById(id);
     }
 
-
+    @CrossOrigin
     @GetMapping
     ResponseEntity<ProductsListResponseDto> getAllProducts(@RequestParam(value="tag", required=false) String tag){
         if(tag != null && !tag.isBlank()){
