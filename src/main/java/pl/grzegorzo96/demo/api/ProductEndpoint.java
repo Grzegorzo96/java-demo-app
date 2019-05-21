@@ -20,6 +20,7 @@ class ProductEndpoint {
         return productFacade.create(productRequestDto);
     }
 
+    @CrossOrigin
     @GetMapping("/product-id-{id}")
     ProductResponseDto getProduct(@PathVariable("id") String id){
         return productFacade.findById(id);
