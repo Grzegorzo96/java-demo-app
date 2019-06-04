@@ -5,20 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DescriptionDto {
-    private String text;
+  private String text;
 
-    public DescriptionDto(@JsonProperty("text") String text) {
-        this.text = text;
-    }
+  public DescriptionDto(@JsonProperty("text") String text) {
+    this.text = text;
+  }
 
-    public String getText() {
-        return text;
-    }
+  public String getText() {
+    return text;
+  }
 
-    @Override
-    public String toString() {
-        return "DescriptionDto{" +
-                "text='" + text + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "DescriptionDto{" + "text='" + text + '\'' + '}';
+  }
 }

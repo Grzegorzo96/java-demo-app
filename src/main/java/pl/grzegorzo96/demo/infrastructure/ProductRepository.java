@@ -1,18 +1,25 @@
 package pl.grzegorzo96.demo.infrastructure;
 
-import pl.grzegorzo96.demo.domain.*;
-
 import java.util.List;
 
+import pl.grzegorzo96.demo.domain.*;
+
 public interface ProductRepository {
-    void save(Product product); // docelowo robimy ProductEntitiy
+  void save(Product product); // docelowo robimy ProductEntitiy
 
-    Product findById(String id);
+  Product findById(String id);
 
-    List<Product> getAll();
-    List<Product> getAllByTags(String tag);
+  List<Product> getAll();
 
-    Product update(Product product, String name, PriceDto price, ImageDto image, DescriptionDto description, List<TagsDto> tags);
+  List<Product> getAllByTags(String tag);
 
-    void delete(String id);
+  Product update(
+      Product product,
+      String name,
+      PriceDto price,
+      ImageDto image,
+      DescriptionDto description,
+      List<TagsDto> tags);
+
+  void delete(String id);
 }

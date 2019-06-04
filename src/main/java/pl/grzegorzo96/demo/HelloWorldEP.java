@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloWorldEP {
-    //  localhosdt:8080/hello
-    //  Hello World!
+  //  localhosdt:8080/hello
+  //  Hello World!
 
-    @RequestMapping(method = RequestMethod.GET, path = "/hello")
-    String hello(){
-        return "Hello heroku world!";
-    }
+  @RequestMapping(method = RequestMethod.GET, path = "/hello")
+  String hello() {
+    return "Hello heroku world!";
+  }
 }
