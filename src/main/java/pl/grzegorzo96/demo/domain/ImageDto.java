@@ -5,20 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ImageDto {
-    private final String url;
+  private final String url;
 
-    public ImageDto(@JsonProperty("url") String url) {
-        this.url = url;
-    }
+  public ImageDto(@JsonProperty("url") String url) {
+    this.url = url;
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    @Override
-    public String toString() {
-        return "ImageDto{" +
-                "url='" + url + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "ImageDto{" + "url='" + url + '\'' + '}';
+  }
 }
